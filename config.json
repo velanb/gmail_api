@@ -1,0 +1,8 @@
+ {
+   "db_config": {
+     "user": "root",
+     "password": "password",
+     "host": "localhost"
+   },
+   "gmail_scopes": ["https://www.googleapis.com/auth/gmail.modify"]
+ }

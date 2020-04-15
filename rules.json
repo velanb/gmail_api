@@ -1,0 +1,27 @@
+{
+  "rule_name": "rule1",
+  "rule_config": {
+    "focus_trait": "all",
+    "conditions": [{
+        "field_name": "subject",
+        "predicate": "contains",
+        "value": "alert",
+        "label": "INBOX"
+      }
+
+
+    ],
+    "actions": [{
+        "action_name": "move_message",
+        "action_properties": {
+          "to_mailbox": "INBOX"
+        }
+      },
+      {
+        "action_name": "mark_as_read",
+        "action_properties": null
+      }
+    ]
+
+  }
+}
