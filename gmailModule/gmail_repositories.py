@@ -39,6 +39,7 @@ class GmailRepo(DB):
         return email_list
 
     def fetch_emails(self, query):
+        print(query)
         if((not query) or (query is None)):
             raise GmailRepoError(
                 'The query parameter is required', 'fetch_emails')

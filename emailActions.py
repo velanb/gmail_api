@@ -24,6 +24,10 @@ class Actions:
             label_json = json.loads(email[4])
             email_dict = {
                 "email_id": email[1],
+                "email_subject": email[2],
+                "email_content": email[3],
+                "email_from": email[5],
+                "email_time": email[6],
                 "email_labels": label_json['label']}
             email_list.append(email_dict)
         return email_list
@@ -33,6 +37,7 @@ class Actions:
         for email in first_conditions_emails:
             self.__apply_rule_actions(
                 'me', email["email_id"], email["email_labels"])
+        return first_conditions_emails
         # self.__init_emails()
 
     def __apply_rule_actions(self, user_id, email_id, email_labels):
@@ -71,7 +76,6 @@ class Actions:
                     remove_label_id_list = []
                     add_label_id_list = email_labels
                     add_label_id_list.append('UNREAD')
-                    print(add_label_id_list)
                     message_labels = ActionUtils.CreateMsgLabels(
                         remove_label_id_list, add_label_id_list)
                     result = self.gmail_api.modify_email(
@@ -89,4 +93,3 @@ class Actions:
         emaiill = self.gmail_api.fetch_email_content('me', list_email)
         for email in emaiill:
             self.gmail_repo.add_emails(email)
-        print(emaiill)

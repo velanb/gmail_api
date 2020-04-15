@@ -3,12 +3,21 @@
   "rule_config": {
     "focus_trait": "all",
     "conditions": [{
+        "field_name": "from",
+        "predicate": "contains",
+        "value": "velan"
+      },
+      {
         "field_name": "subject",
         "predicate": "contains",
-        "value": "alert",
-        "label": "INBOX"
-      }
+        "value": "interview"
+      },
 
+      {
+        "field_name": "date",
+        "predicate": "greater_than",
+        "value": 1
+      }
 
     ],
     "actions": [{

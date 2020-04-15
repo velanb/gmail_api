@@ -17,6 +17,9 @@ def pre_build():
         gmail_api = GmailAPI(SCOPES)
         gmail_repo = GmailRepo('gmail_api_v1', 'gmail_table_v1', db_config)
         actions = Actions(gmail_api, gmail_repo).apply_rule()
-
+        print("FINAL OP", actions)
     except FileNotFoundError as err:
         print("Error>>> ", err)
+
+
+pre_build()

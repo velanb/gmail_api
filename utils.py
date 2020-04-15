@@ -66,8 +66,8 @@ class QueryUtils:
                     q3.append(field)
                     q3.append(predicate)
                     q3.append("'%{}%'".format(condition['value']))
-                else:
-                    q3.append(focus_switcher[foucs])
+                    if ctr - 1 > 0:
+                        q3.append(focus_switcher[foucs])
                 ctr = ctr - 1
 
         final_query = q1+query_string.join(q3)
@@ -89,4 +89,4 @@ class QueryUtils:
             current_date = datetime.now() - \
                 timedelta(days=date_cond[0]['value'])
 
-            return old_query + "AND recieved_date {} '{}'".format(predicate_switcher[predicate], current_date.date()) + ";"
+            return old_query + " recieved_date {} '{}'".format(predicate_switcher[predicate], current_date.date()) + ";"
