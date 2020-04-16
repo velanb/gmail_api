@@ -103,6 +103,8 @@ class RuleFilter:
                         user_id, email_id, message_labels)
                 else:
                     print('The Email is already unread', email_id)
+            else:
+                raise Exception("The given action_name is not supported")
         return True
 
 # This is the helper method to fetch the rule file

@@ -32,8 +32,8 @@ Below is a sample rule configuration
 {
   "rule_name": "rule1",         ->> The name of the rule
   "rule_config": {              ->> The configuration
-    "focus_trait": "all",       ->> Focus trait - It can be either 'all' or 'any'
-    "conditions": [{            ->> The conditions is a list.
+    "focus_trait": "all",       ->> Focus trait
+    "conditions": [{            ->> The conditions list.
         "field_name": "from",
         "predicate": "contains",
         "value": "tenmiles"
@@ -49,7 +49,7 @@ Below is a sample rule configuration
         "value": "interview"
       }
     ],
-    "actions": [{                             ->> Actions is a list of individual actions
+    "actions": [{                             ->> Actions list 
         "action_name": "move_message",
         "action_properties": {
           "to_mailbox": "INBOX"
@@ -75,13 +75,20 @@ Below are the available configurations and actions available for
 
 ```
 {
-        "field_name": "from",    -> Available Field Names --> from / body / from / to / date
-        "predicate": "contains",
-        "value": "tenmiles"
+      "field_name": "from",    -> Available Field Names --> from / body / from / to / date
+      "predicate": "contains", -> Available Predicates --> contains / does_not_contain / equals / not_equals / greater_than / less_than
+      "value": "tenmiles"      -> Any value 
 }
 ```
 
+### Action Dict
 
+```
+{
+    "action_name": "move_message",  -> Available Action Names - move_message / mark_as_unread / mark_as_read 
+    "action_properties": {"to_mailbox": "INBOX"}  -> Destination Labels / null for marking as read or unread
+}
+```
 
 ## Run Application
 
