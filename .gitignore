@@ -4,3 +4,4 @@ ruleModule
 .vscode
 creds.json
 token.pickle
+start.sh

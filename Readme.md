@@ -15,7 +15,11 @@ The app packages can be found in requirements.txt file
 ### Installing
 
 The application uses Gmail's native API to interact with the emails. 
-
+ This is to install the requirements
+ ```
+    pip install -r requirements.txt
+    
+```
 
 ```
 To successfully connect with the google servers please create a api configuration and update the gmail_credentials.json file.
