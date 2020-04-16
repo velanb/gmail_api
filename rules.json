@@ -5,20 +5,18 @@
     "conditions": [{
         "field_name": "from",
         "predicate": "contains",
-        "value": "velan"
+        "value": "tenmiles"
+      },
+      {
+        "field_name": "from",
+        "predicate": "contains",
+        "value": "tenmiles"
       },
       {
         "field_name": "subject",
         "predicate": "contains",
         "value": "interview"
-      },
-
-      {
-        "field_name": "date",
-        "predicate": "greater_than",
-        "value": 1
       }
-
     ],
     "actions": [{
         "action_name": "move_message",
@@ -31,6 +29,5 @@
         "action_properties": null
       }
     ]
-
   }
 }

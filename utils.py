@@ -56,8 +56,8 @@ class QueryUtils:
         }
         predicate_switcher = {
             "contains": "LIKE",
-            "does_not_contain": "does_not_contain",
-            "equals": "equals",
+            "does_not_contain": "NOT LIKE",
+            "equals": "=",
             "not_equals": "NOT LIKE",
             "greater_than": ">",
             "less_than": "<"
@@ -75,12 +75,22 @@ class QueryUtils:
 
             else:
                 field = field_switcher.get(condition['field_name'])
+                if field is None:
+                    raise UtilError('Please enter a valid field name in the rule.json file',
+                                    "build_query")
                 predicate = predicate_switcher.get(condition['predicate'])
+                if predicate is None:
+                    raise UtilError('Please enter a valid predicate in the rule.json file',
+                                    "build_query")
                 if ctr > 0:
                     q3.append(field)
                     q3.append(predicate)
                     q3.append("'%{}%'".format(condition['value']))
                     if ctr - 1 > 0:
+                        cur_focus = focus_switcher[foucs]
+                        if cur_focus is None:
+                            raise UtilError(
+                                "Please enter a valid focus in the rules.json file ", "build_query")
                         q3.append(focus_switcher[foucs])
                 ctr = ctr - 1
 
