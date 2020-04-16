@@ -1,19 +1,33 @@
 import json
 from errorhandler import UtilError
 from datetime import datetime, date, timedelta
+# This File contains all the Utility methods that are used across the application
+
+# AppUtil - Consists of global methods used in the applicatio
 
 
 class AppUtils:
     @staticmethod
     def readJSONFile(filename):
-        with open(filename) as this_file:
-            return json.load(this_file)
+        try:
+            with open(filename) as this_file:
+                return json.load(this_file)
+        except FileNotFoundError as err:
+            print("Error>>> ", err)
+
+# Action Util - This contains all the methods to apply rules to emails
 
 
 class ActionUtils:
     @staticmethod
     def CreateMsgLabels(remove_label_id_list, add_label_id_list):
+        if type(remove_label_id_list) is not list or type(add_label_id_list) is not list:
+            raise TypeError(
+                "Error at CreateMSG Util - the value must be of type list")
+
         return {'removeLabelIds': remove_label_id_list, 'addLabelIds': add_label_id_list}
+
+# Has the methods for building the query as per the users requirement
 
 
 class QueryUtils:
@@ -66,8 +80,8 @@ class QueryUtils:
                     q3.append(field)
                     q3.append(predicate)
                     q3.append("'%{}%'".format(condition['value']))
-                else:
-                    q3.append(focus_switcher[foucs])
+                    if ctr - 1 > 0:
+                        q3.append(focus_switcher[foucs])
                 ctr = ctr - 1
 
         final_query = q1+query_string.join(q3)
@@ -89,4 +103,4 @@ class QueryUtils:
             current_date = datetime.now() - \
                 timedelta(days=date_cond[0]['value'])
 
-            return old_query + "AND recieved_date {} '{}'".format(predicate_switcher[predicate], current_date.date()) + ";"
+            return old_query + " recieved_date {} '{}'".format(predicate_switcher[predicate], current_date.date()) + ";"
