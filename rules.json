@@ -13,9 +13,9 @@
         "value": "tenmiles"
       },
       {
-        "field_name": "subject",
-        "predicate": "contains",
-        "value": "interview"
+        "field_name": "date",
+        "predicate": "less_than",
+        "value": 3
       }
     ],
     "actions": [{
