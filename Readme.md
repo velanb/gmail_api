@@ -25,12 +25,10 @@ You can also replace this file with the credentials.json file downloaded form go
 ```
 
 
-## License
+## Run Application
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+The application can be run using the below commands
 
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+```
+python main.py
+```

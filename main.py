@@ -17,7 +17,8 @@ def main():
         gmail_api = GmailAPI(SCOPES)
         gmail_repo = GmailRepo('gmail_api_v1', 'gmail_table_v1', db_config)
         actions = RuleFilter(gmail_api, gmail_repo).apply_rule()
-        print("FINAL OP", actions)
+        print("\n")
+        print("Result >>>>>", actions)
         return actions
     except FileNotFoundError as err:
         print("Error>>> ", err)
