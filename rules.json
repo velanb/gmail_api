@@ -27,7 +27,7 @@
         }
       },
       {
-        "action_name": "mark_as_read",
+        "action_name": "mark_as_unread",
         "action_properties": null
       }
     ]
