@@ -7,18 +7,20 @@ from google.auth.transport.requests import Request
 from datetime import datetime
 from gmailModule.error_handlers import GmailAPIError
 
-# The GmailAPI class takes care of all the methods that handle the gmail services
-# The Constructor takes in one param
-# @param - scopes - type list - an array of scopes
-
 
 class GmailAPI:
+    """The GmailAPI class takes care of all the methods that handle the gmail services
+The Constructor takes in one param
+@param - scopes - type list - an array of scopes
+"""
+
     def __init__(self, scopes):
         self.SCOPES = scopes
         self.service = self.__create_service()
-# This method is to create a gmail service instance
 
     def __create_service(self):
+        """This method is to create a gmail service instance
+"""
         print("Setting Up GMail service..... \n")
         creds = None
         if os.path.exists('token.pickle'):
@@ -36,10 +38,9 @@ class GmailAPI:
         service = build('gmail', 'v1', credentials=creds)
         return service
 
-# This takes in the userid and get all the emailids
-# @param - userId - type string
-
     def fetch_email_ids(self, user_id):
+        """This takes in the userid and get all the emailids
+@param - userId - type string"""
         if ((user_id is None)or (not user_id)):
             raise GmailAPIError(
                 'The User ID cannot be null', 'fetch_email_ids')
@@ -54,11 +55,11 @@ class GmailAPI:
                 item_list.append(id['id'])
             return item_list
 
-# This is to fetch all the email contents from the gmail service.
-# @param - user_id - type string
-# @param - idlist - type list
-
     def fetch_email_content(self, user_id, id_list):
+        """
+This is to fetch all the email contents from the gmail service.
+@param - user_id - type string
+@param - idlist - type list"""
         print("Fetching Emails ...\n")
         if ((user_id is None)or (not user_id)):
             raise GmailAPIError(
@@ -89,8 +90,9 @@ class GmailAPI:
                                                         body=message_labels).execute()
         return result
 
-# This is a helper method to segregate the emails objects
     def __email_dict_generator(self, header, email_list, email_dict):
+        """This is a helper method to segregate the emails objects
+"""
         if(header['name'] == 'From'):
             email_dict['sender_info'] = header['value']
         elif(header['name'] == 'Date'):

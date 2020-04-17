@@ -3,10 +3,10 @@ from errorhandler import UtilError
 from datetime import datetime, date, timedelta
 # This File contains all the Utility methods that are used across the application
 
-# AppUtil - Consists of global methods used in the applicatio
-
 
 class AppUtils:
+    """ AppUtil - Consists of global methods used in the application
+"""
     @staticmethod
     def readJSONFile(filename):
         try:
@@ -15,10 +15,10 @@ class AppUtils:
         except FileNotFoundError as err:
             print("Error>>> ", err)
 
-# Action Util - This contains all the methods to apply rules to emails
-
 
 class ActionUtils:
+    """Action Util - This contains all the methods to apply rules to emails
+"""
     @staticmethod
     def CreateMsgLabels(remove_label_id_list, add_label_id_list):
         if type(remove_label_id_list) is not list or type(add_label_id_list) is not list:
@@ -27,10 +27,10 @@ class ActionUtils:
 
         return {'removeLabelIds': remove_label_id_list, 'addLabelIds': add_label_id_list}
 
-# Has the methods for building the query as per the users requirement
-
 
 class QueryUtils:
+    """Has the methods for building the query as per the users requirement
+"""
     @staticmethod
     def build_query(foucs, conditions, table_name):
         if ((conditions is None) or(not conditions)):

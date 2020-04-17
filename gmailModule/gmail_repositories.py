@@ -2,24 +2,23 @@ from db import DB
 from gmailModule.error_handlers import GmailRepoError
 import json
 
-# This class has methods which handles connecting to the db and performing CRUD operations
-# This class takes in three parameters to initalize
-# @param - db_name - type string - Name of the datavase
-# @param - table_name - type string - Name of the table_name
-# @param - conn_dict - type dict - The connection Dict withe the db configuration
-# This class inherts from the DB class which has all the connection config for the database
-
 
 class GmailRepo(DB):
+    """This class has methods which handles connecting to the db and performing CRUD operations
+This class takes in three parameters to initalize
+@param - db_name - type string - Name of the datavase
+@param - table_name - type string - Name of the table_name
+@param - conn_dict - type dict - The connection Dict withe the db configuration
+This class inherts from the DB class which has all the connection config for the database"""
+
     def __init__(self, db_name, table_name, conn_dict):
         super().__init__(db_name, conn_dict)
         self.table_name = table_name
         self.create_table(table_name)
 
-# This method is used to add emails to the database.
-# @param - email_dict - type dict - The email dictionary
-
     def add_emails(self, email_dict):
+        """This method is used to add emails to the database.
+@param - email_dict - type dict - The email dictionary"""
         if ((email_dict is None) or (not email_dict)):
             raise GmailRepoError(
                 'The email_dict cannot be None', 'add_emails')
@@ -35,10 +34,10 @@ class GmailRepo(DB):
         self.cursor.execute(add_email, email_data)
         self.db_connection.commit()
 
-# This method is to fetch the emails form db based on the emailid
-# @param - email_id - type string - The email id
-
     def fetch_email(self, email_id):
+        """ This method is to fetch the emails form db based on the emailid
+@param - email_id - type string - The email id
+"""
         if((not email_id) or (email_id is None)):
             raise GmailRepoError(
                 'The email_id cannot be empty', 'fetch_email')
@@ -50,10 +49,10 @@ class GmailRepo(DB):
         for data in self.cursor:
             email_list.append(data)
         return email_list
-# This method takes in a query and returns a list of emails
-# @param - query - type string
 
     def fetch_emails(self, query):
+        """This method takes in a query and returns a list of emails
+@param - query - type string"""
         if((not query) or (query is None)):
             raise GmailRepoError(
                 'The query parameter is required', 'fetch_emails')
@@ -61,11 +60,11 @@ class GmailRepo(DB):
         self.cursor.execute(query)
         records = self.cursor.fetchall()
         return records
-# This method is to update the email label
-# @param - emailid - a string
-# @param - label - a JSON
 
     def update_email_label(self, email_id, label_ids):
+        """This method is to update the email label
+@param - emailid - a string
+@param - label - a JSON"""
         add_email = ("UPDATE gmail_table_v1 "
                      "SET 'email_label' = %s"
                      "WHERE email_id = %s")
@@ -76,10 +75,9 @@ class GmailRepo(DB):
         self.db_connection.commit()
         return True
 
-# This method is to create a table
-# @param table_name - type string
-
     def create_table(self, table_name):
+        """This method is to create a table
+@param table_name - type string"""
         if((not table_name) or (table_name is None)):
             raise GmailRepoError(
                 'The table_name parameter  must be specified', 'create_table')
